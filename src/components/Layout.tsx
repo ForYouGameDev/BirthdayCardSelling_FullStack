@@ -20,7 +20,7 @@ export default function Layout() {
   return (
     <div className="flex min-h-screen flex-col bg-bg">
       <div className="bg-ink px-4 py-2 text-center text-[11px] font-semibold tracking-[.16em] text-bg sm:text-xs">CELEBRATE THE LITTLE MOMENTS · MAKE IT PERSONAL</div>
-      <header className="sticky top-0 z-30 border-b border-line/80 bg-bg/90 shadow-sm shadow-ink/[.03] backdrop-blur-xl">
+      <header className="no-print sticky top-0 z-30 border-b border-line/80 bg-bg/90 shadow-sm shadow-ink/[.03] backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-4 sm:px-6 lg:px-8">
           <Link to="/" className="mr-2 flex items-center gap-2 font-display text-xl font-extrabold tracking-tight text-ink sm:text-2xl">
             <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-accent text-lg text-white shadow-md shadow-accent/20" aria-hidden="true">✦</span>
@@ -41,8 +41,8 @@ export default function Layout() {
             <Link to="/cart" className="btn-ghost h-10 rounded-full px-4" aria-label={`Cart, ${count} items`}><span aria-hidden="true">♡</span><span className="hidden sm:inline">Bag</span>{count > 0 && <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 text-[10px] text-white">{count}</span>}</Link>
             {user ? (
               <div className="flex items-center gap-2">
-                <Link to="/orders" className="hidden text-sm font-semibold text-muted hover:text-accent md:inline">Orders</Link>
-                <Link to="/account" className="hidden text-sm font-semibold text-muted hover:text-accent md:inline">{profile?.full_name?.split(' ')[0] || 'Account'}</Link>
+                <Link to="/orders" className="text-sm font-semibold text-muted hover:text-accent">Orders</Link>
+                <Link to="/account" className="text-sm font-semibold text-muted hover:text-accent">{profile?.full_name?.split(' ')[0] || 'Account'}</Link>
                 <button className="btn-primary px-4 py-2.5" onClick={() => signOut().then(() => nav('/'))}>Sign out</button>
               </div>
             ) : (
@@ -55,7 +55,7 @@ export default function Layout() {
         <SetupNotice />
         <Outlet />
       </main>
-      <footer className="mt-10 border-t border-line bg-surface">
+      <footer className="no-print mt-10 border-t border-line bg-surface">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 text-center sm:flex-row sm:px-6 sm:text-left lg:px-8">
           <div><Link to="/" className="font-display text-lg font-extrabold text-ink">{SITE_NAME} <span className="text-accent">✦</span></Link><p className="mt-1 text-xs text-muted">Thoughtful cards for life's happiest moments.</p></div>
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted"><Link to="/shop" className="hover:text-accent">Shop cards</Link>{user && <Link to="/orders" className="hover:text-accent">My orders</Link>}{CONTACT_EMAIL && <a className="hover:text-accent" href={`mailto:${CONTACT_EMAIL}`}>Get in touch</a>}</div>
