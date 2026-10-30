@@ -5,6 +5,7 @@ import { ErrorBox, Spinner } from '../components/ui';
 import { listCategories, listProducts } from '../lib/api';
 import { isConfigured, SITE_NAME } from '../lib/supabase';
 import type { Category, Product } from '../lib/types';
+import { Cake, Flower, Sparkles, Heart, ArrowRight } from '../components/icons';
 
 export default function Home() {
   const [featured, setFeatured] = useState<Product[] | null>(null);
@@ -19,90 +20,141 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="space-y-16 pb-10">
-      <section className="relative isolate overflow-hidden rounded-[2rem] border border-line bg-surface px-6 py-12 shadow-sm sm:px-12 sm:py-16 lg:px-16">
-        <div className="pointer-events-none absolute -right-20 -top-24 -z-10 h-80 w-80 rounded-full bg-accent/10 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-28 right-1/4 -z-10 h-72 w-72 rounded-full bg-sorbet/20 blur-3xl" />
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_.9fr]">
-          <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/5 px-4 py-2 text-xs font-bold uppercase tracking-[.18em] text-accent">
-              <span aria-hidden="true">✦</span> Little things. Big feelings.
-            </span>
-            <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.06] tracking-tight sm:text-6xl">
-              Make their day feel <span className="text-accent">extra special.</span>
-            </h1>
-            <p className="mt-5 max-w-lg text-base leading-7 text-muted sm:text-lg">
-              Thoughtful birthday cards, made even more meaningful with your own words, photos and personal touches.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link to="/shop" className="btn-primary px-7 py-3.5 shadow-lg shadow-accent/20">Explore the collection <span aria-hidden="true">→</span></Link>
-              <span className="text-sm text-muted">Made for the moments that matter.</span>
+    <div className="space-y-16 overflow-hidden">
+
+      <section className="relative isolate overflow-hidden rounded-[2.5rem] border border-[#f5dce5] bg-gradient-to-br from-[#fff0f5] via-[#fff7ed] to-[#f1eaff] px-6 py-14 sm:px-12 sm:py-20 lg:px-16">
+        <div className="pointer-events-none absolute -right-12 -top-16 h-64 w-64 rounded-full bg-[#f9c9dc]/40 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-20 left-1/3 h-64 w-64 rounded-full bg-[#d9c9f5]/40 blur-3xl" />
+
+        <div className="pointer-events-none absolute right-8 top-8 hidden rotate-12 text-[#d98ca9]/50 sm:block">
+          <Flower className="h-16 w-16" />
+        </div>
+        <div className="pointer-events-none absolute bottom-8 right-1/3 hidden text-[#d98ca9]/40 sm:block">
+          <Sparkles className="h-10 w-10" />
+        </div>
+
+        <div className="relative grid items-center gap-10 lg:grid-cols-2">
+          <div className="max-w-xl">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#efcbd9] bg-white/75 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#b65d80] shadow-sm">
+              <Sparkles className="h-4 w-4" />
+              Made for happy moments
             </div>
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-line pt-6 text-sm text-muted">
-              <span><strong className="text-ink">✦</strong> Personalised designs</span>
-              <span><strong className="text-ink">♡</strong> Made with care</span>
-              <span><strong className="text-ink">🎁</strong> A gift they’ll keep</span>
+
+            <h1 className="font-display text-4xl font-extrabold leading-[1.12] tracking-tight text-[#59364b] sm:text-5xl lg:text-6xl">
+              A little card,
+              <span className="mt-2 block text-[#d66d98]">a lot of love.</span>
+            </h1>
+
+            <p className="mt-6 max-w-md text-base leading-8 text-[#806779] sm:text-lg">
+              Beautiful birthday cards made to turn your sweetest wishes into memories worth keeping.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/shop" className="group inline-flex items-center gap-3 rounded-full bg-[#d66d98] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#d66d98]/25 transition hover:-translate-y-1 hover:bg-[#bd557f]">
+                Explore collection
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+              </Link>
+              <Link to="/shop" className="inline-flex items-center gap-2 rounded-full border border-[#e9c8d7] bg-white/80 px-7 py-3.5 text-sm font-bold text-[#87556d] transition hover:border-[#d66d98] hover:bg-white">
+                Discover cards
+              </Link>
+            </div>
+
+            <div className="mt-9 flex items-center gap-3 text-sm text-[#987b8d]">
+              <Heart className="h-4 w-4 text-[#d66d98]" />
+              <span>Designed with love, made for celebrations</span>
             </div>
           </div>
-          <div className="relative mx-auto w-full max-w-md">
-            <div className="absolute -left-5 top-8 h-24 w-24 rounded-full border border-accent/20 bg-accent/5" />
-            <div className="absolute -right-4 bottom-8 h-28 w-28 rounded-full border border-sorbet/40 bg-sorbet/10" />
-            <div className="relative grid grid-cols-2 gap-3">
-              <div className="mt-10 rotate-[-5deg] overflow-hidden rounded-[1.6rem] border border-line bg-bg p-3 shadow-xl">
-                <div className="flex aspect-[4/5] flex-col items-center justify-center rounded-[1.1rem] bg-accent/10 p-4 text-center">
-                  <span className="text-4xl" aria-hidden="true">🎂</span>
-                  <span className="mt-4 font-display text-2xl font-extrabold leading-tight text-accent">Make a wish!</span>
-                  <span className="mt-2 text-xs text-muted">A little joy, just for you</span>
-                </div>
+
+          <div className="relative mx-auto flex w-full max-w-md items-center justify-center">
+            <div className="absolute h-72 w-72 rounded-full border border-[#eac8d8] bg-white/40 sm:h-96 sm:w-96" />
+            <div className="absolute h-60 w-60 rounded-full border border-dashed border-[#d9b8cb] sm:h-80 sm:w-80" />
+
+            <div className="relative flex aspect-square w-[85%] items-center justify-center overflow-hidden rounded-[2.5rem] border border-white/80 bg-gradient-to-br from-[#ffe0eb] via-[#fff2df] to-[#e9ddff] shadow-2xl shadow-[#b77c9a]/15">
+              <div className="absolute left-8 top-8 text-[#cf86a4]">
+                <Flower className="h-12 w-12" />
               </div>
-              <div className="overflow-hidden rounded-[1.6rem] border border-line bg-bg p-3 shadow-xl">
-                <div className="flex aspect-[4/5] flex-col items-center justify-center rounded-[1.1rem] bg-sorbet/20 p-4 text-center">
-                  <span className="text-4xl" aria-hidden="true">🌷</span>
-                  <span className="mt-4 font-display text-2xl font-extrabold leading-tight text-ink">You are loved</span>
-                  <span className="mt-2 text-xs text-muted">Celebrate beautifully</span>
-                </div>
+              <div className="absolute right-8 top-12 text-[#c69acb]">
+                <Sparkles className="h-10 w-10" />
               </div>
-            </div>
-            <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 rounded-full border border-line bg-surface px-5 py-3 text-sm font-semibold shadow-lg">
-              <span className="mr-2 text-accent" aria-hidden="true">✦</span> A card as unique as they are
+              <div className="absolute bottom-9 left-9 text-[#d38aa7]">
+                <Heart className="h-9 w-9" />
+              </div>
+              <div className="absolute bottom-10 right-8 text-[#c69acb]">
+                <Flower className="h-12 w-12" />
+              </div>
+
+              <div className="relative flex flex-col items-center">
+                <div className="mb-5 flex h-24 w-24 items-center justify-center rounded-full border border-white/80 bg-white/65 shadow-lg">
+                  <Cake className="h-14 w-14 text-[#d66d98]" />
+                </div>
+                <span className="font-display text-3xl font-extrabold tracking-tight text-[#86516f] sm:text-4xl">
+                  Make a wish
+                </span>
+                <span className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#b7839c]">
+                  Celebrate beautifully
+                </span>
+                <div className="mt-5 h-1.5 w-16 rounded-full bg-[#d98ca9]" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {cats.length > 0 && (
-        <section aria-label="Categories">
-          <div className="mb-5 flex items-end justify-between gap-4">
-            <div><p className="text-xs font-bold uppercase tracking-[.2em] text-accent">Find the perfect feeling</p><h2 className="mt-2 font-display text-2xl font-extrabold sm:text-3xl">Shop by occasion</h2></div>
-            <Link to="/shop" className="hidden text-sm font-semibold text-accent hover:underline sm:inline">View all cards →</Link>
+        <section aria-label="Categories" className="space-y-6">
+          <div className="text-center">
+            <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#c27b99]">Find your feeling</span>
+            <h2 className="mt-2 font-display text-3xl font-extrabold text-ink">Shop by occasion</h2>
+            <p className="mt-2 text-sm text-muted">A lovely little card for every special moment.</p>
           </div>
-          <div className="flex gap-3 overflow-x-auto pb-2">
-            {cats.map((c, i) => <Link key={c.id} to={`/shop?category=${c.slug}`} className="group flex min-w-[145px] flex-1 items-center justify-between rounded-2xl border border-line bg-surface p-4 transition hover:-translate-y-1 hover:border-accent hover:shadow-md">
-              <span className="font-semibold">{c.name}</span><span className="text-xl transition group-hover:translate-x-1" aria-hidden="true">{['✦','♡','🎈','🌷','🎁'][i % 5]}</span>
-            </Link>)}
+
+          <div className="flex flex-wrap justify-center gap-3">
+            {cats.map((c) => (
+              <Link key={c.id} to={`/shop?category=${c.slug}`} className="rounded-full border border-[#f0d6e0] bg-white px-6 py-3 text-sm font-semibold text-[#98647c] shadow-sm transition hover:-translate-y-1 hover:border-[#d66d98] hover:bg-[#fff2f7] hover:text-[#c05d85]">
+                {c.name}
+              </Link>
+            ))}
           </div>
         </section>
       )}
 
-      <section>
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <div><p className="text-xs font-bold uppercase tracking-[.2em] text-accent">Picked with love</p><h2 className="mt-2 font-display text-2xl font-extrabold sm:text-3xl">Customer favourites</h2><p className="mt-2 text-sm text-muted">A few lovely ways to make someone smile.</p></div>
-          <Link to="/shop" className="text-sm font-semibold text-accent hover:underline">Shop all →</Link>
+      <section className="space-y-7">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#c27b99]">Handpicked for you</span>
+            <h2 className="mt-2 font-display text-3xl font-extrabold text-ink">Lovely little cards</h2>
+            <p className="mt-2 text-sm text-muted">Our favourite designs, made to spread happiness.</p>
+          </div>
+          <Link to="/shop" className="inline-flex items-center gap-2 rounded-full border border-[#f0d6e0] bg-white px-5 py-2.5 text-sm font-semibold text-[#bd6489] transition hover:bg-[#fff2f7]">
+            View all
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
-        {err ? <ErrorBox message={err} /> : featured === null ? <Spinner /> : featured.length === 0 ? <p className="rounded-2xl border border-dashed border-line bg-surface p-10 text-center text-muted">Our collection is getting ready. Please check back soon.</p> : (
-          <div className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">{featured.map((p) => <ProductCard key={p.id} product={p} />)}</div>
+
+        {err ? <ErrorBox message={err} /> : featured === null ? <Spinner /> : featured.length === 0 ? <p className="rounded-3xl border border-dashed border-line bg-surface p-10 text-center text-muted">No cards yet.</p> : (
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">{featured.map((p) => <ProductCard key={p.id} product={p} />)}</div>
         )}
       </section>
 
-      <section className="overflow-hidden rounded-[2rem] bg-accent px-6 py-10 text-white sm:px-12 sm:py-14">
-        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-          <span className="text-3xl" aria-hidden="true">💌</span>
-          <h2 className="mt-4 font-display text-3xl font-extrabold sm:text-4xl">Your words make it unforgettable.</h2>
-          <p className="mt-3 max-w-xl leading-7 text-white/85">Add a name, a heartfelt message or a favourite photo. Turn a beautiful card into something that feels truly theirs.</p>
-          <Link to="/shop" className="btn mt-7 bg-white px-7 py-3 text-accent shadow-lg transition hover:-translate-y-0.5 hover:bg-bg">Create a little magic <span aria-hidden="true">→</span></Link>
+      <section className="relative overflow-hidden rounded-[2rem] border border-[#f2d8e2] bg-gradient-to-r from-[#fff0f5] to-[#f3edff] px-6 py-10 text-center sm:px-12 sm:py-14">
+        <div className="pointer-events-none absolute left-8 top-7 text-[#d28ba7]/40">
+          <Flower className="h-12 w-12" />
+        </div>
+        <div className="pointer-events-none absolute bottom-6 right-8 text-[#c59acb]/50">
+          <Sparkles className="h-12 w-12" />
+        </div>
+        <div className="relative">
+          <Heart className="mx-auto h-8 w-8 text-[#d66d98]" />
+          <h2 className="mt-4 font-display text-3xl font-extrabold text-[#70465d]">Make someone's day special</h2>
+          <p className="mx-auto mt-3 max-w-lg text-sm leading-7 text-[#98788a]">
+            Sometimes the smallest gesture carries the biggest smile. Find a card that says it all.
+          </p>
+          <Link to="/shop" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#d66d98] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#d66d98]/20 transition hover:-translate-y-1 hover:bg-[#bd557f]">
+            Find the perfect card
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
-      <p className="text-center text-xs text-muted">Thank you for choosing {SITE_NAME} to be part of your celebrations.</p>
     </div>
   );
 }
