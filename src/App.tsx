@@ -7,7 +7,18 @@ import Account from './pages/Account';
 import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import { AdminHome, Checkout, NotFound } from './pages/Placeholders';
+import { NotFound } from './pages/Placeholders';
+import Checkout from './pages/Checkout';
+import Orders from './pages/Orders';
+import OrderDetail from './pages/OrderDetail';
+import AdminLayout from './pages/admin/AdminLayout';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminOrders from './pages/admin/AdminOrders';
+import AdminProducts from './pages/admin/AdminProducts';
+import AdminProductEdit from './pages/admin/AdminProductEdit';
+import AdminCategories from './pages/admin/AdminCategories';
+import AdminPersonalization from './pages/admin/AdminPersonalization';
+import AdminSettings from './pages/admin/AdminSettings';
 import ProductPage from './pages/ProductPage';
 import ResetPassword from './pages/ResetPassword';
 import Shop from './pages/Shop';
@@ -40,7 +51,17 @@ export default function App() {
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="account" element={<RequireAuth><Account /></RequireAuth>} />
           <Route path="checkout" element={<RequireAuth><Checkout /></RequireAuth>} />
-          <Route path="admin" element={<RequireAdmin><AdminHome /></RequireAdmin>} />
+          <Route path="orders" element={<RequireAuth><Orders /></RequireAuth>} />
+          <Route path="orders/:id" element={<RequireAuth><OrderDetail /></RequireAuth>} />
+          <Route path="admin" element={<RequireAdmin><AdminLayout /></RequireAdmin>}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="orders" element={<AdminOrders />} />
+            <Route path="products" element={<AdminProducts />} />
+            <Route path="products/:id" element={<AdminProductEdit />} />
+            <Route path="categories" element={<AdminCategories />} />
+            <Route path="personalization" element={<AdminPersonalization />} />
+            <Route path="settings" element={<AdminSettings />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

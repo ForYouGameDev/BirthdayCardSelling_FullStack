@@ -33,6 +33,7 @@ export default function Layout() {
           <Link to="/cart" className="btn-ghost" aria-label={`Cart, ${count} items`}>Cart{count > 0 && <span className="rounded-full bg-accent px-2 text-xs text-white">{count}</span>}</Link>
           {user ? (
             <div className="flex items-center gap-2">
+              <Link to="/orders" className="text-sm font-medium hover:text-accent">Orders</Link>
               <Link to="/account" className="text-sm font-medium hover:text-accent">{profile?.full_name?.split(' ')[0] || 'Account'}</Link>
               <button className="btn-ghost" onClick={() => signOut().then(() => nav('/'))}>Sign out</button>
             </div>

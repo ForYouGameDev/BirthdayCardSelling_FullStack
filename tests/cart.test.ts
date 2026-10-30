@@ -64,3 +64,22 @@ describe('format', () => {
     expect(deliveryText(null, null)).toBeNull();
   });
 });
+
+import { minorToRupees, rupeesToMinor, slugify } from '../src/lib/format';
+describe('admin money helpers', () => {
+  it('rupeesToMinor', () => {
+    expect(rupeesToMinor('149')).toBe(14900);
+    expect(rupeesToMinor('149.5')).toBe(14950);
+    expect(rupeesToMinor(' 0.99 ')).toBe(99);
+    expect(rupeesToMinor('abc')).toBeNull();
+    expect(rupeesToMinor('-5')).toBeNull();
+    expect(rupeesToMinor('1.234')).toBeNull();
+    expect(rupeesToMinor('')).toBeNull();
+  });
+  it('minorToRupees', () => {
+    expect(minorToRupees(14900)).toBe('149');
+    expect(minorToRupees(14950)).toBe('149.50');
+    expect(minorToRupees(null)).toBe('');
+  });
+  it('slugify', () => expect(slugify('  Happy Birthday, Mom! ')).toBe('happy-birthday-mom'));
+});

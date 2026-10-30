@@ -38,3 +38,13 @@ Tests: `npm test`.
 - Pricing/personalization/cart logic: 54 unit tests pass (ek simple runner se; asli `vitest` sandbox me install nahi ho paya).
 - React code: sirf syntax-parse hua. `npm run build`, `tsc`, aur browser me chalana **verify nahi hua**. Pehli GitHub Actions run me agar typecheck/build error aaye to log bhejna, main fix kar dunga. (Typecheck step abhi non-blocking hai.)
 - Google login, email confirm, GitHub Pages deploy: tumhare setup par hi verify honge.
+
+## Batch 2 (admin panel, addresses, checkout, COD, Razorpay test)
+1. Supabase SQL Editor: run `supabase/migrations/0005_batch2.sql` once.
+2. COD works right away. Admin -> Settings: set shipping / COD fee.
+3. Razorpay (test mode): get Test Key ID + Secret from dashboard.razorpay.com (Test mode).
+   Supabase -> Edge Functions -> Secrets: RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET, RAZORPAY_WEBHOOK_SECRET (+ SUPABASE_ANON_KEY if missing).
+   Deploy functions `razorpay-create-order`, `razorpay-verify`, `razorpay-webhook` (webhook with "Verify JWT" OFF) from `supabase/functions/`.
+   Razorpay dashboard -> Webhooks -> URL `https://<ref>.supabase.co/functions/v1/razorpay-webhook`, events payment.captured + order.paid, same secret.
+   Then Admin -> Settings -> tick "Allow online payment".
+Verification: SQL 137 checks pass on real Postgres 16; 54+12 unit tests pass (shim runner). Edge Functions and Razorpay payment itself NOT run (no keys / Deno here).

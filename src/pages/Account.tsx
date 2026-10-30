@@ -1,4 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
+import { Link } from 'react-router-dom';
+import AddressBook from '../components/AddressBook';
 import { ErrorBox, Spinner } from '../components/ui';
 import { useAuth } from '../context/AuthContext';
 
@@ -19,7 +21,8 @@ export default function Account() {
 
   if (!profile) return <Spinner />;
   return (
-    <form onSubmit={save} className="card mx-auto max-w-lg space-y-3 p-6">
+    <div className="mx-auto max-w-lg space-y-6">
+    <form onSubmit={save} className="card space-y-3 p-6">
       <h1 className="text-2xl font-extrabold">My account</h1>
       <p className="text-sm text-muted">{user?.email}{isAdmin ? ' · admin' : ''}</p>
       <div><label className="label" htmlFor="fn">Full name</label><input id="fn" className="input" value={name} onChange={(e) => setName(e.target.value)} maxLength={100} /></div>
@@ -27,7 +30,9 @@ export default function Account() {
       {err && <ErrorBox message={err} />}
       {msg && <p className="text-sm text-green-700 dark:text-green-300" role="status">{msg}</p>}
       <button className="btn-primary">Save</button>
-      <p className="text-xs text-muted">Orders and addresses arrive in the next batch.</p>
+      <p className="text-sm"><Link className="underline" to="/orders">My orders</Link></p>
     </form>
+    <section><h2 className="mb-2 text-xl font-bold">Saved addresses</h2><AddressBook /></section>
+    </div>
   );
 }
